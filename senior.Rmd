@@ -1,0 +1,26 @@
+---
+title: "senior"
+author: "SaiG"
+date: '2022-07-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidycensus)
+library(tigris)
+```
+
+```{r}
+glimpse(pums_variables)
+
+nw_states <- c("OR", "WA", "ID")
+
+nw_pums <- get_pums(variables = c("AGEP", "PUMA"), state = nw_states, recode = TRUE, survey = "acs1", year = 2018)
+
+nw_pums |>
+  group_by("ST", "PUMA") |>
+  summarize(total_pop = sum("PWGTP"), pct_Senior = )
+```
+
